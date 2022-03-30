@@ -58,10 +58,12 @@ def user_login(sess:Session,user:str,passwd:str)->dict:
     """
     resp = sess.post(url_login, headers=get_login_header(),
         data=json.dumps(get_login_payload(user,passwd)).encode("utf-8"))
-    data = json.loads(resp.text)["data"]
+    response = resp.json()
+    if response["code"] != 200:
+        raise RuntimeError(response["msg"])
     return {
-        "token": data["token"],
-        "orgId": data["orgId"]
+        "token": response["data"]["token"],
+        "orgId": response["data"]["orgId"]
     }
 
 # { "data": [{"id": 5,},], }
