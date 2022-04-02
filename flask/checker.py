@@ -37,7 +37,10 @@ class checker:
   def update(self,cls:str):
     for i in self.accounts:
       if cls == i["username"]:
-        self.students[cls] = crawler.login_for_list(cls,i["password"])      
+        self.students[cls] = crawler.login_for_list(cls,i["password"])
+  def update_all(self):
+    for i in self.accounts:
+      self.students[i["username"]] = crawler.login_for_list(i["username"],i["password"])
   def study_count(self,cls:str)->int:
     return len(self.students[cls]) if cls in self.students else -1
   def has_study(self,name:str,stage:int=0)->bool:

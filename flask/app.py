@@ -69,7 +69,7 @@ def list_all(cls):
   })
 @app.route("/update")
 def force_update():
-  Thread(target=Checker.update()).start()
+  Thread(target=Checker.update_all()).start()
   return {
     "code": 200,
     "status": "updating"
@@ -78,4 +78,4 @@ def force_update():
 def hello():
   return "hello"
 if __name__=="__main__":
-  app.run(host="0.0.0.0",port=5000)
+  app.run(host="127.0.0.1",port=5000)
