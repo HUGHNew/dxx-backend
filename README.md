@@ -10,20 +10,14 @@ API:
 - `/list/<string:cls>` 列出所有已学习人员
 
 Docker images
-- `git4docker/flask`
+- `git4docker/flask:backend`
 - `nginx:alpine`
 
 init:`sudo docker network create backend`
 
-docker run:
-```bash
-#!/bin/bash
-sudo docker run --network backend \
-  --rm -itd -v $(pwd)/flask:/flask \
-  --name flask flask uwsgi /flask/uwsgi.ini
-sudo docker run --network backend \
-  --rm -d -v $(pwd)/ngx:/etc/nginx/conf.d \
-  --name ngx -p 8000:80 nginx:alpine nginx -g 'daemon off;'
-```
+docker run: 见[run.sh](run.sh)
 
 使用参考:<https://hughnash.top/blogs/Flask-uWSGI-in-Docker.html>
+
+> 具体使用需要配置 `flask/account.json` 从该文件读取管理员帐号
+> 格式参考 `flask/account_template.json`
