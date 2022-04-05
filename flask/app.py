@@ -4,6 +4,7 @@ from flask import Flask, Response, make_response, request
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 Checker = checker("account.json")
 
@@ -76,6 +77,6 @@ def force_update():
   }
 @app.route("/")
 def hello():
-  return "hello"
+  return "<h1>Hello, this is the backend of dxx</h1>"
 if __name__=="__main__":
   app.run(host="127.0.0.1",port=5000)
