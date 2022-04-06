@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  flask:
+    container_name: flask
+    image: "git4docker/flask:backend"
+    volumes:
+      - "./flask:/flask"
+
+  nginx:
+    image: "nginx:alpine"
+    ports:
+      - "8000:80"
+    volumes:
+      - "./ngx:/etc/nginx/conf.d"
+    command: "nginx -g 'daemon off;'"
